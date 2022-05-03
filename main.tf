@@ -9,3 +9,16 @@ module "mwaa_iam_role" {
       "airflow.amazonaws.com"
     ]
   }
+
+  use_fullname = true
+
+  policy_documents = [
+    data.aws_iam_policy_document.this.json,
+  ]
+
+  policy_document_count = 1
+  policy_description    = "AWS MWAA IAM policy"
+  role_description      = "AWS MWAA IAM role"
+
+  context = module.iam_label.context
+}
